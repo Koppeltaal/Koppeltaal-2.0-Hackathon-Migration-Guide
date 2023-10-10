@@ -15,6 +15,29 @@ Overzicht en tevens mapping tussen Koppeltaal 1.3.x en 2.0.
 * In Koppeltaal 1.3.x wordt er gebruik gemaakt van het CarePlan dat de intentie beschrijft van hoe één of meer behandelaars voornemens zijn zorg te verlenen aan een patiënt gedurende een bepaalde periode. Hierbij wordt een lijst van activiteiten opgesteld die onderdeel zijn van dit plan.
 * In Koppeltaal 2.0 wordt er _**geen**_ opgestelde lijst van activiteiten uitgewisseld gedurende een bepaalde periode maar één activiteit die kan wordt toegekend en kan worden uitgevoerd door een participant.
 
+** Mapping van de Task.for en Task.owner.
+
+De Task.for is verplicht in koppeltaal, en wordt altijd gevuld met de patient die bij de taak betrokken is. De Task.owner is degene die verantwoordelijk is dat de taak wordt uitgevoerd. Dit is de persoon die de taak uitvoert, en in veel scenarios is dit ook de patient. Voorbeelden:
+
+Een patient heeft een taak:
+* Task.for Patient/123
+* Task.owner Patient/123
+
+Een behandelaar moet een rapportage maken:
+* Task.for Patient/123
+* Task.owner Practitioner/123
+
+Een patient moet een ander uit zijn groep evalueren:
+* Task.for Patient/123
+* Task.owner Patient/321
+
+Door de Task.for altijd te vullen met de patient of wie de taak betrekking heeft, hoewel dit vaak ten overvloede lijkt, zorgt ervoor dat in alle scenario's de taken met betrekking tot de patient vindbaar zijn.
+
+In het launch scenario betekent dit dat de mapping op HTI is:
+* Task.for = HTI.patient
+* Task.owner = HTI.sub
+
+
 TODO:
 
 * Groepen uitwisselen kan niet door middel van CareTeam: gebruik hiervoor Organization.
