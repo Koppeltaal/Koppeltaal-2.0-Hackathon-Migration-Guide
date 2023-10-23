@@ -22,7 +22,43 @@ In Koppeltaal 2.0 en FHIR R4 is er echter een belangrijk verschil rond de logica
 
 Gegeven de bovenstaande observaties is er een oplossingsrichting bedacht waar gebruik wordt gemaakt van een tijdelijk, migratiespecifieke, identifier. Deze identifier heeft een specifiek systeem en in de waarde is de resource link waarmee de resource in Koppeltaal 1.x uniek wordt geïdentificeerd. Deze tijdelijke identifier maakt het mogelijk de Koppeltaal 1.x identifier van resources van de bron van de resource naar de afnemers van de resource te communiceren. Bij het aanmaken van de resource in het Koppeltaal 2.0 domein voegt het bronsysteem de waarde van de Koppeltaal 1.x resource link toe aan de entiteit, zodat het systeem wat deze ontvangt op basis van deze identifier de entiteit in de database correct kan verwerken.
 
-&#x20;
+#### Versionering
+De tijdelijke identifiers maken geen gebruik van versionering, enkel de laatste versie van het koppeltaal 1.x object wordt gebruikt.
+
+#### Identifier system en use
+Het systeem van de tijdelijke identifier is:
+```
+http://koppeltaal.nl/migration/identifier/<resource-type>
+```
+De use van de identifier heeft de waarde `temp`.
+
+Een voorbeeld van een identifier van een patient resource:
+
+```
+{
+    "resourceType": "Patient",
+    "id": "patient-botje-minimaal",
+    "meta": {
+        "profile":  [
+            "http://koppeltaal.nl/fhir/StructureDefinition/KT2Patient"
+        ]
+    },
+    "identifier":  [
+        {
+            "use": "temp",
+            "system": "http://koppeltaal.nl/migration/identifier/Patient",
+            "value": "..."
+        },
+        {
+            "use": "official",
+            "system": "irma",
+            "value": "berendbotje01@vzvz.nl"
+        }
+    ],
+    "active": true,
+    ...
+}
+```
 
 ### Migratie: timing en afhankelijkheden <a href="#migratie-timing-en-afhankelijkheden" id="migratie-timing-en-afhankelijkheden"></a>
 
