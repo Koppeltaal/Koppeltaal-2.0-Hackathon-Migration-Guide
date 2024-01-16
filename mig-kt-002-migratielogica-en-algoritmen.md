@@ -12,7 +12,10 @@ De grootste paradigmashift in Koppeltaal 2.0 is de afscheid van de bus-architect
 
 Koppeltaal 1.x maakt gebruik van FHIR DSTU3 en message bundles. Alle resources binnen de bundle, net als de bundle zelf, moeten uniek geïdentificeerd worden met de resource link. Verder, hebben sommige entiteiten, maar niet alle, een een FHIR identifier. Een FHIR identifier bestaat uit een system en een waarde. Het system maakt het mogelijk te differentiëren in verschillende type identifiers.
 
-`<identifier> <system>https://example.com/identifiers/email</system> <value>bert@example.com</value> </identifier>`
+`<identifier> 
+  <system>https://example.com/identifiers/email</system>
+  <value>bert@example.com</value>
+</identifier>`
 
 Koppeltaal 2.0 maakt gebruik van R4, in FHIR R4 kent elk object een logical id en een type. Met de combinatie van deze twee is het mogelijk een canonical URL te maken, hetgeen lijkt op de resource link. Daarnaast kan, net als in FHIR DSTU3 een object één of meerdere identifier hebben.
 
@@ -59,6 +62,12 @@ Een voorbeeld van een identifier van een patient resource:
     ...
 }
 ```
+
+### Geneste datatypen en tijdelijke identifiers
+
+In KT1.x zijn de Tasks onderdeel van het CarePlan en hebben geen eigen resource link, maar wel een unieke identifier in de vorm van een id. In dit geval stellen we voor een niet-bestaande resource-type te gebruiken, de `CarePlanActivity`. Het system van de tijdelijke identifier is dan `http://koppeltaal.nl/migration/identifier/CarePlanActivity`.
+
+Vooralsnog zijn er geen andere geneste datatypen bekend, indien deze worden gevonden, wordt aangeraden ook in dat geval gebruik te maken van een fictieve, nog overeen te komen, resource-type.
 
 ### Migratie: timing en afhankelijkheden <a href="#migratie-timing-en-afhankelijkheden" id="migratie-timing-en-afhankelijkheden"></a>
 
