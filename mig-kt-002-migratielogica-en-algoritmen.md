@@ -12,10 +12,10 @@ De grootste paradigmashift in Koppeltaal 2.0 is de afscheid van de bus-architect
 
 Koppeltaal 1.x maakt gebruik van FHIR DSTU3 en message bundles. Alle resources binnen de bundle, net als de bundle zelf, moeten uniek geïdentificeerd worden met de resource link. Verder, hebben sommige entiteiten, maar niet alle, een een FHIR identifier. Een FHIR identifier bestaat uit een system en een waarde. Het system maakt het mogelijk te differentiëren in verschillende type identifiers.
 
-`<identifier> 
+```<identifier> 
   <system>https://example.com/identifiers/email</system>
   <value>bert@example.com</value>
-</identifier>`
+</identifier>```
 
 Koppeltaal 2.0 maakt gebruik van R4, in FHIR R4 kent elk object een logical id en een type. Met de combinatie van deze twee is het mogelijk een canonical URL te maken, hetgeen lijkt op de resource link. Daarnaast kan, net als in FHIR DSTU3 een object één of meerdere identifier hebben.
 
